@@ -1,0 +1,108 @@
+/Users/hakjun/PycharmProjects/chatbot/venv/bin/python /Users/hakjun/PycharmProjects/chatbot/ex6-3.py
+Metal device set to: Apple M1 Pro
+
+systemMemory: 32.00 GB
+maxCacheSize: 10.67 GB
+
+2023-01-17 04:04:49.990862: I tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc:306] Could not identify NUMA node of platform GPU ID 0, defaulting to 0. Your kernel may not have been built with NUMA support.
+2023-01-17 04:04:49.990883: I tensorflow/core/common_runtime/pluggable_device/pluggable_device_factory.cc:272] Created TensorFlow device (/job:localhost/replica:0/task:0/device:GPU:0 with 0 MB memory) -> physical PluggableDevice (device: 0, name: METAL, pci bus id: <undefined>)
+Model: "model"
+__________________________________________________________________________________________________
+ Layer (type)                   Output Shape         Param #     Connected to
+==================================================================================================
+ input_1 (InputLayer)           [(None, 12)]         0           []
+
+ embedding (Embedding)          (None, 12, 128)      1440000     ['input_1[0][0]']
+
+ dropout (Dropout)              (None, 12, 128)      0           ['embedding[0][0]']
+
+ conv1d (Conv1D)                (None, 10, 128)      49280       ['dropout[0][0]']
+
+ conv1d_1 (Conv1D)              (None, 9, 128)       65664       ['dropout[0][0]']
+
+ conv1d_2 (Conv1D)              (None, 8, 128)       82048       ['dropout[0][0]']
+
+ global_max_pooling1d (GlobalMa  (None, 128)         0           ['conv1d[0][0]']
+ xPooling1D)
+
+ global_max_pooling1d_1 (Global  (None, 128)         0           ['conv1d_1[0][0]']
+ MaxPooling1D)
+
+ global_max_pooling1d_2 (Global  (None, 128)         0           ['conv1d_2[0][0]']
+ MaxPooling1D)
+
+ concatenate (Concatenate)      (None, 384)          0           ['global_max_pooling1d[0][0]',
+                                                                  'global_max_pooling1d_1[0][0]',
+                                                                  'global_max_pooling1d_2[0][0]']
+
+ dense (Dense)                  (None, 128)          49280       ['concatenate[0][0]']
+
+ dropout_1 (Dropout)            (None, 128)          0           ['dense[0][0]']
+
+ logits (Dense)                 (None, 3)            387         ['dropout_1[0][0]']
+
+ dense_1 (Dense)                (None, 3)            12          ['logits[0][0]']
+
+==================================================================================================
+Total params: 1,686,671
+Trainable params: 1,686,671
+Non-trainable params: 0
+__________________________________________________________________________________________________
+None
+Epoch 1/5
+2023-01-17 04:04:50.748287: W tensorflow/tsl/platform/profile_utils/cpu_utils.cc:128] Failed to get CPU frequency: 0 Hz
+2023-01-17 04:04:50.749168: I tensorflow/core/grappler/optimizers/custom_graph_optimizer_registry.cc:114] Plugin optimizer for device_type GPU is enabled.
+2023-01-17 04:04:50.959360: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:50.959385: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:50.965206: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:50.966785: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:50.981002: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:50.981023: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:51.002144: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:51.006202: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:51.009930: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:51.009957: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:51.009968: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:51.012163: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+2023-01-17 04:04:51.019644: W tensorflow/core/framework/op_kernel.cc:1830] OP_REQUIRES failed at xla_ops.cc:418 : NOT_FOUND: could not find registered platform with id: 0x14fc572e0
+Traceback (most recent call last):
+  File "/Users/hakjun/PycharmProjects/chatbot/ex6-3.py", line 66, in <module>
+    model.fit(train_ds, validation_data=val_ds, epochs=EPOCH, verbose=1)
+  File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/utils/traceback_utils.py", line 70, in error_handler
+    raise e.with_traceback(filtered_tb) from None
+  File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/tensorflow/python/eager/execute.py", line 52, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+tensorflow.python.framework.errors_impl.NotFoundError: Graph execution error:
+
+Detected at node 'StatefulPartitionedCall_11' defined at (most recent call last):
+    File "/Users/hakjun/PycharmProjects/chatbot/ex6-3.py", line 66, in <module>
+      model.fit(train_ds, validation_data=val_ds, epochs=EPOCH, verbose=1)
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/utils/traceback_utils.py", line 65, in error_handler
+      return fn(*args, **kwargs)
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/engine/training.py", line 1650, in fit
+      tmp_logs = self.train_function(iterator)
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/engine/training.py", line 1249, in train_function
+      return step_function(self, iterator)
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/engine/training.py", line 1233, in step_function
+      outputs = model.distribute_strategy.run(run_step, args=(data,))
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/engine/training.py", line 1222, in run_step
+      outputs = model.train_step(data)
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/engine/training.py", line 1027, in train_step
+      self.optimizer.minimize(loss, self.trainable_variables, tape=tape)
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/optimizers/optimizer_experimental/optimizer.py", line 527, in minimize
+      self.apply_gradients(grads_and_vars)
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/optimizers/optimizer_experimental/optimizer.py", line 1140, in apply_gradients
+      return super().apply_gradients(grads_and_vars, name=name)
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/optimizers/optimizer_experimental/optimizer.py", line 634, in apply_gradients
+      iteration = self._internal_apply_gradients(grads_and_vars)
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/optimizers/optimizer_experimental/optimizer.py", line 1166, in _internal_apply_gradients
+      return tf.__internal__.distribute.interim.maybe_merge_call(
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/optimizers/optimizer_experimental/optimizer.py", line 1216, in _distributed_apply_gradients_fn
+      distribution.extended.update(
+    File "/Users/hakjun/PycharmProjects/chatbot/venv/lib/python3.8/site-packages/keras/optimizers/optimizer_experimental/optimizer.py", line 1211, in apply_grad_to_update_var
+      return self._update_step_xla(grad, var, id(self._var_key(var)))
+Node: 'StatefulPartitionedCall_11'
+could not find registered platform with id: 0x14fc572e0
+	 [[{{node StatefulPartitionedCall_11}}]] [Op:__inference_train_function_1887]
+
+Process finished with exit code 1
